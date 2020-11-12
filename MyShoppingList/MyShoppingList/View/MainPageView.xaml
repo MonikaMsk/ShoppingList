@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyShoppingList.View.MainPageView"
+             x:Name="mainPageView"
+             Title="ShoppingList">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand }" />
+    </ContentPage.ToolbarItems>
+    
+    
+   <RefreshView Command="{Binding LoadDataCommand}"
+                 IsRefreshing="{Binding isBusy, Mode=TwoWay}">
+        
+       
+       <CollectionView ItemsSource="{Binding Items}">
+           <CollectionView.ItemTemplate>
+               
+               <DataTemplate>
+                   <StackLayout>
+                   <Grid Padding="10">
+                       <Grid.RowDefinitions>
+                           <RowDefinition Height="Auto" />
+                           <RowDefinition Height="Auto" />
+                       </Grid.RowDefinitions>
+                       <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="Auto" />
+                           <ColumnDefinition Width="Auto" />
+                       </Grid.ColumnDefinitions>
+                       
+                       <Label Grid.Row="1"
+                              Grid.Column="1"
+                              HorizontalOptions="Center"
+                              VerticalTextAlignment="Center"
+                              Text="{Binding Product}"
+                              VerticalOptions="End" />
+                       
+                       <Button Grid.Column="3" Grid.RowSpan="2"
+                               Text="Delete"
+                               BorderColor="DarkRed"
+                               Command="{Binding Source={x:Reference mainPageView}, Path=ViewModel.RemoveItemCommand}" CommandParameter="{Binding .}" 
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center"
+                           
+                              BackgroundColor="Red"
+                               TextColor="White"/>
+                   
+                   
+                   </Grid>
+                   </StackLayout>
+               </DataTemplate>
+           </CollectionView.ItemTemplate>
+           
+       </CollectionView>
+          
+  </RefreshView>
+    
+</ContentPage>
+

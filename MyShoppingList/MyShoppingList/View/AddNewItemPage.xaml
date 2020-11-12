@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyShoppingList.View.AddNewItemPage">
+    <ContentPage.Content>
+      
+        <StackLayout Margin="50, 100">
+            
+            <Entry Text="{Binding Item.Product}"/>
+            <Button TextColor="White" BackgroundColor="ForestGreen" Text="Save" Command="{Binding SaveCommand}" />
+            <Button TextColor="White" BackgroundColor="Indigo" Text="Speak" Command="{Binding SpeakCommand}"  />
+            
+        </StackLayout>
+      
+        
+    </ContentPage.Content>
+</ContentPage>

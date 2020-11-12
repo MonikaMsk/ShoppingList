@@ -1,0 +1,13 @@
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/bin/Debug/netstandard2.0/MyShoppingList.deps.json
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/bin/Debug/netstandard2.0/MyShoppingList.dll
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/bin/Debug/netstandard2.0/MyShoppingList.pdb
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/MyShoppingList.csprojAssemblyReference.cache
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/App.xaml.g.cs
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/View/AddNewItemPage.xaml.g.cs
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/View/MainPageView.xaml.g.cs
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/MyShoppingList.AssemblyInfoInputs.cache
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/MyShoppingList.AssemblyInfo.cs
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/MyShoppingList.csproj.CoreCompileInputs.cache
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/XamlC.stamp
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/MyShoppingList.dll
+/Users/iths/RiderProjects/MyShoppingList/MyShoppingList/MyShoppingList/obj/Debug/netstandard2.0/MyShoppingList.pdb
