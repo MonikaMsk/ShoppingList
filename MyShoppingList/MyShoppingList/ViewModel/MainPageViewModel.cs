@@ -55,7 +55,7 @@ namespace MyShoppingList.ViewModel
             _isDataLoaded = false;
         }
    
-        // Items.Contains -> checks if items exist
+       
         
         private async Task AddItem()
         {
