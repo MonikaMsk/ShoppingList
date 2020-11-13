@@ -71,9 +71,7 @@ namespace MyShoppingList.ViewModel
        private async Task Delete(Item item)
        {
            Items.Remove(item);
-           //  Items.Remove(listViewModel);
            var prod = await _listStore.GetItem(item.Id);
-
            await _listStore.DeleteItem(prod);
 
        } 
