@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MyShoppingList.Model;
 using MyShoppingList.Services;
 using MyShoppingList.View;
 using Xamarin.Essentials;
@@ -13,9 +14,8 @@ namespace MyShoppingList.ViewModel
       
         private IListStore _listStore;
         private IPageService _pageService;
-        private ListViewModel _listViewModel;
 
-     //  private bool _isDataLoaded;
+        //  private bool _isDataLoaded;
       
        private bool isBusy;
 
@@ -24,11 +24,23 @@ namespace MyShoppingList.ViewModel
         public ICommand LoadDataCommand { get; private set; }
         public ICommand AddItemCommand { get; private set; }
         public ICommand RemoveItemCommand { get; set; }
-    
+
+        public ICommand SpeakItemCommand { get; set; }
+
 
         public MainPageViewModel()
         {
+            MessagingCenter.Subscribe<AddNewItemViewModel, Item>
+                (this, Event.ItemAdded, OnItemAdded);
         }
+        
+        private void OnItemAdded(AddNewItemViewModel source, Item item)
+        {
+            Items.Add(new ListViewModel(item));
+        }
+
+        
+        
 
         public MainPageViewModel(IListStore listStore, IPageService pageService)
         {
@@ -39,11 +51,19 @@ namespace MyShoppingList.ViewModel
             LoadDataCommand = new Command(async () => await LoadData());
             AddItemCommand = new Command(async () => await AddItem()); 
             RemoveItemCommand = new Command<ListViewModel>(async c => await Delete(c));
-            
-          
+            SpeakItemCommand = new Command<ListViewModel>(async c => await Speak(c));
+
         }
         
+        private async Task Speak(ListViewModel listViewModel)
+        {
+            var item = await _listStore.GetItem(listViewModel.Id);
+            var read = item.Product;
+            await TextToSpeech.SpeakAsync(read);
+        }
 
+        
+      
         private async Task LoadData()
         {
          // if (_isDataLoaded)
@@ -74,9 +94,6 @@ namespace MyShoppingList.ViewModel
             await _listStore.DeleteItem(item);
           
         }
-
-
-
-
+        
     }
 }

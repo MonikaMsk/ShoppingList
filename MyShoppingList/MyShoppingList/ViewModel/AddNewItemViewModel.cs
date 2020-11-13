@@ -15,7 +15,7 @@ namespace MyShoppingList.ViewModel
 
         public Item Item { get; set; }
         public ICommand SaveCommand { get; set; }
-        public ICommand SpeakCommand { get; set; }
+    
 
         public AddNewItemViewModel(ListViewModel viewModel, IListStore listStore, IPageService pageService)
         {
@@ -25,7 +25,7 @@ namespace MyShoppingList.ViewModel
             _pageService = pageService;
             _listStore = listStore;
             SaveCommand = new Command(async () => await Save());
-            SpeakCommand = new Command(async () => await Speak());
+           
 
             Item = new Item
             {
@@ -46,6 +46,7 @@ namespace MyShoppingList.ViewModel
             if (Item.Id == 0)
             {
                 await _listStore.AddItem(Item);
+                MessagingCenter.Send(this, Event.ItemAdded, Item);
                
             }
             
@@ -53,12 +54,6 @@ namespace MyShoppingList.ViewModel
             
         }
 
-        private async Task Speak()
-        {
-            var read = Item.Product;
-            await TextToSpeech.SpeakAsync(read);
-
-        }
 
     }
 }

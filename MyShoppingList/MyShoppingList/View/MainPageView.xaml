@@ -11,51 +11,60 @@
     </ContentPage.ToolbarItems>
     
     
-   <RefreshView Command="{Binding LoadDataCommand}"
+   <RefreshView 
                  IsRefreshing="{Binding isBusy, Mode=TwoWay}">
-        
-       
+      
        <CollectionView ItemsSource="{Binding Items}">
            <CollectionView.ItemTemplate>
-               
+ 
                <DataTemplate>
                    <StackLayout>
-                   <Grid Padding="10">
-                       <Grid.RowDefinitions>
-                           <RowDefinition Height="Auto" />
-                           <RowDefinition Height="Auto" />
-                       </Grid.RowDefinitions>
-                       <Grid.ColumnDefinitions>
-                           <ColumnDefinition Width="Auto" />
-                           <ColumnDefinition Width="Auto" />
-                       </Grid.ColumnDefinitions>
-                       
-                       <Label Grid.Row="1"
-                              Grid.Column="1"
-                              HorizontalOptions="Center"
-                              VerticalTextAlignment="Center"
-                              Text="{Binding Product}"
-                              VerticalOptions="End" />
-                       
-                       <Button Grid.Column="3" Grid.RowSpan="2"
-                               Text="Delete"
-                               BorderColor="DarkRed"
-                               Command="{Binding Source={x:Reference mainPageView}, Path=ViewModel.RemoveItemCommand}" CommandParameter="{Binding .}" 
-                              VerticalOptions="Center"
-                              HorizontalOptions="Center"
+                       <Grid Padding="10">
+                           <Grid.RowDefinitions>
+                               <RowDefinition Height="*" />
+                               <RowDefinition Height="*"/>
+                              
+                           </Grid.RowDefinitions>
+                           <Grid.ColumnDefinitions>
+                               <ColumnDefinition />
+                               <ColumnDefinition  />
+                               <ColumnDefinition />
+                           </Grid.ColumnDefinitions>
+         
+                           <Label Grid.Row="0"
+                                  Grid.Column="0"
+                                  Text="{Binding Product}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Start"
+                                  />
                            
-                              BackgroundColor="Red"
-                               TextColor="White"/>
-                   
-                   
-                   </Grid>
+                           <Button
+                               Grid.Row="0"
+                               Text="Speak"
+                               Grid.Column="2" 
+                               BackgroundColor="DarkBlue"
+                               TextColor="White"
+                               Command="{Binding Source={x:Reference mainPageView}, Path=ViewModel.SpeakItemCommand}" CommandParameter="{Binding .}" />
+                               
+                          
+         
+                           <Button Grid.Row="0" Grid.Column="3" 
+                                   Text="Delete"
+                                   Command="{Binding Source={x:Reference mainPageView}, Path=ViewModel.RemoveItemCommand}" CommandParameter="{Binding .}" 
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BackgroundColor="Red"
+                                   WidthRequest="50"
+                                   TextColor="White"/>
+                    
+                       </Grid>
                    </StackLayout>
                </DataTemplate>
            </CollectionView.ItemTemplate>
-           
+
        </CollectionView>
-          
+
+       
   </RefreshView>
-    
 </ContentPage>
 

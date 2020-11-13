@@ -9,7 +9,7 @@
             
             <Entry Text="{Binding Item.Product}"/>
             <Button TextColor="White" BackgroundColor="ForestGreen" Text="Save" Command="{Binding SaveCommand}" />
-            <Button TextColor="White" BackgroundColor="Indigo" Text="Speak" Command="{Binding SpeakCommand}"  />
+         
             
         </StackLayout>
       
