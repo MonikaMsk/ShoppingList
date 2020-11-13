@@ -14,11 +14,10 @@ namespace MyShoppingList.ViewModel
       
         private IListStore _listStore;
         private IPageService _pageService;
-        private Item _item;
+    
         private bool _isDataLoaded;
       
-    //   private bool isBusy;
-
+        
        public ObservableCollection<Item> Items { get; private set; }
 
         public ICommand LoadDataCommand { get; private set; }
@@ -37,15 +36,8 @@ namespace MyShoppingList.ViewModel
             LoadDataCommand = new Command(async () => await LoadData());
             AddItemCommand = new Command(async () => await AddItem()); 
            RemoveItemCommand = new Command<Item>(async c => await Delete(c));
-            SpeakItemCommand = new Command<ListViewModel>(async c => await Speak(c));
+            SpeakItemCommand = new Command<Item>(async c => await Speak(c));
 
-        }
-        
-        private async Task Speak(ListViewModel listViewModel)
-        {
-            var item = await _listStore.GetItem(listViewModel.Id);
-            var read = item.Product;
-            await TextToSpeech.SpeakAsync(read);
         }
         
         private async Task LoadData()
@@ -56,8 +48,10 @@ namespace MyShoppingList.ViewModel
             _isDataLoaded = true;
             var items = await _listStore.GetItemsAsync();
             Items.Clear();
-            foreach (var item in items)
+        
+            foreach (var item in items) 
                 Items.Add(item);
+            
             _isDataLoaded = false;
         }
    
@@ -74,7 +68,15 @@ namespace MyShoppingList.ViewModel
            var prod = await _listStore.GetItem(item.Id);
            await _listStore.DeleteItem(prod);
 
-       } 
+       }
+       
+       
+       private async Task Speak(Item item)
+       {
+           var read = item.Product;
+            await TextToSpeech.SpeakAsync(read);
+
+       }
         
     }
 }

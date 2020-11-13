@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyShoppingList.Data;
+using MyShoppingList.Model;
 using MyShoppingList.Services;
 using MyShoppingList.ViewModel;
 using Xamarin.Forms;

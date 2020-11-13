@@ -1,6 +1,6 @@
-using MyShoppingList.Model;
+using MyShoppingList.ViewModel;
 
-namespace MyShoppingList.ViewModel
+namespace MyShoppingList.Model
 {
     public class ListViewModel: BaseViewModel
     {
@@ -10,12 +10,7 @@ namespace MyShoppingList.ViewModel
         {
 
         }
-        public ListViewModel(Item item)
-        {
-            Id = item.Id;
-            _product = item.Product;
-        }
-
+        
         private string _product;
 
         public string Product
