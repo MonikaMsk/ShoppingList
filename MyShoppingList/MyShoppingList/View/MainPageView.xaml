@@ -11,8 +11,7 @@
     </ContentPage.ToolbarItems>
     
     
-   <RefreshView 
-                 IsRefreshing="{Binding isBusy, Mode=TwoWay}">
+ 
       
        <CollectionView ItemsSource="{Binding Items}">
            <CollectionView.ItemTemplate>
@@ -65,6 +64,6 @@
        </CollectionView>
 
        
-  </RefreshView>
+ 
 </ContentPage>
 

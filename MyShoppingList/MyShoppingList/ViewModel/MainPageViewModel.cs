@@ -14,43 +14,29 @@ namespace MyShoppingList.ViewModel
       
         private IListStore _listStore;
         private IPageService _pageService;
-
-        //  private bool _isDataLoaded;
+        private Item _item;
+        private bool _isDataLoaded;
       
-       private bool isBusy;
+    //   private bool isBusy;
 
-       public ObservableCollection<ListViewModel> Items { get; private set; }
+       public ObservableCollection<Item> Items { get; private set; }
 
         public ICommand LoadDataCommand { get; private set; }
         public ICommand AddItemCommand { get; private set; }
         public ICommand RemoveItemCommand { get; set; }
 
         public ICommand SpeakItemCommand { get; set; }
-
-
-        public MainPageViewModel()
-        {
-            MessagingCenter.Subscribe<AddNewItemViewModel, Item>
-                (this, Event.ItemAdded, OnItemAdded);
-        }
-        
-        private void OnItemAdded(AddNewItemViewModel source, Item item)
-        {
-            Items.Add(new ListViewModel(item));
-        }
-
-        
         
 
         public MainPageViewModel(IListStore listStore, IPageService pageService)
         {
-            Items = new ObservableCollection<ListViewModel>();
+            Items = new ObservableCollection<Item>();
             _listStore = listStore;
             _pageService = pageService;
 
             LoadDataCommand = new Command(async () => await LoadData());
             AddItemCommand = new Command(async () => await AddItem()); 
-            RemoveItemCommand = new Command<ListViewModel>(async c => await Delete(c));
+           RemoveItemCommand = new Command<Item>(async c => await Delete(c));
             SpeakItemCommand = new Command<ListViewModel>(async c => await Speak(c));
 
         }
@@ -61,39 +47,36 @@ namespace MyShoppingList.ViewModel
             var read = item.Product;
             await TextToSpeech.SpeakAsync(read);
         }
-
         
-      
         private async Task LoadData()
         {
-         // if (_isDataLoaded)
-           //  return;
+            if (_isDataLoaded)
+                return;
 
-             //_isDataLoaded = true;
-           isBusy = true;
-            var items = await _listStore.GetItemAsync();
+            _isDataLoaded = true;
+            var items = await _listStore.GetItemsAsync();
+            Items.Clear();
             foreach (var item in items)
-            {
-                Items.Add(new ListViewModel(item));
-            }
-
-          //  isBusy = false;
+                Items.Add(item);
+            _isDataLoaded = false;
         }
    
+        // Items.Contains -> checks if items exist
         
         private async Task AddItem()
         {
             await _pageService.PushAsync(new AddNewItemPage(new ListViewModel()));
         }
 
-        private async Task Delete(ListViewModel listViewModel)
-        {
-            Items.Remove(listViewModel);
+       private async Task Delete(Item item)
+       {
+           Items.Remove(item);
+           //  Items.Remove(listViewModel);
+           var prod = await _listStore.GetItem(item.Id);
 
-            var item = await _listStore.GetItem(listViewModel.Id);
-            await _listStore.DeleteItem(item);
-          
-        }
+           await _listStore.DeleteItem(prod);
+
+       } 
         
     }
 }

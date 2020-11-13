@@ -20,7 +20,7 @@ namespace MyShoppingList.Services
             await MainPageView.DisplayAlert(title, message, ok);
         }
         
-        private Page MainPageView
+        private static Page MainPageView
         {
             get { return Application.Current.MainPage; }
         }

@@ -46,7 +46,7 @@ namespace MyShoppingList.ViewModel
             if (Item.Id == 0)
             {
                 await _listStore.AddItem(Item);
-                MessagingCenter.Send(this, Event.ItemAdded, Item);
+              
                
             }
             

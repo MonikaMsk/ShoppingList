@@ -19,7 +19,7 @@ namespace MyShoppingList.Services
         }
 
 
-        public async Task<IEnumerable<Item>> GetItemAsync()
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
             return await _connection.Table<Item>().ToListAsync();
            
